@@ -20,10 +20,12 @@ public class Main {
 
             if(input == 1){
                 loggedInUser = execution.executeLogin(scanner, userAccountManager);
+                //loggedInUser = userAccountManager.login();
                 execution.handleUserOperations(loggedInUser, scanner, userAccountManager);
             } else if(input == 2){
                 loggedInUser = execution.executeRegister(scanner, userAccountManager);
                 execution.handleUserOperations(loggedInUser, scanner, userAccountManager);
+                //userAccountManager.activateUsers();
             } else if(input == 3){
                 System.out.println("Exiting...");
                 session = false;

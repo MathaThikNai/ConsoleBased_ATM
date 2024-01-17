@@ -43,6 +43,7 @@ public class Account {
             updateBalanceInFile(user.getAccountNumber(), user.getAccountBalance());
             transactions.add(new Transaction("Deposit", amount, description));
             writeTransactionToFile(user.getAccountNumber(), new Transaction("Deposit", amount, description));
+            System.out.println("Deposit Successful");
             return true;
         }
         return false;
@@ -54,8 +55,10 @@ public class Account {
             updateBalanceInFile(user.getAccountNumber(), user.getAccountBalance());
             transactions.add(new Transaction("Withdrawal", amount, description));
             writeTransactionToFile(user.getAccountNumber(), new Transaction("Withdrawal", amount, description));
+            System.out.println("Withdraw Successful");
             return true;
         }
+        System.out.println("Insufficient Balance");
         return false;
     }
 
@@ -73,8 +76,10 @@ public class Account {
             transactions.add(new Transaction("Transfer from " + sender.getUsername(), amount, description));
             writeTransactionToFile(receiver.getAccountNumber(), new Transaction("Received from " + sender.getUsername(), amount, description));
 
+            System.out.println("Transfer Successful");
             return true;
         }
+        System.out.println("Insufficient Balance");
         return false;
     }
 
@@ -188,7 +193,7 @@ public class Account {
         return false;
     }
 
-    private static double calculateMaturityAmount(double principal, int months, double interestRate) {
+    public static double calculateMaturityAmount(double principal, int months, double interestRate) {
         double simpleInterest = (principal * interestRate * months) / 1200;
         return principal + simpleInterest;
     }
