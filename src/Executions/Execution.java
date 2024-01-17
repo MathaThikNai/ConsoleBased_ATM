@@ -16,8 +16,7 @@ public class Execution {
         System.out.println("Welcome to the ATM!");
         System.out.println("Please select an option:");
         System.out.println("1. Login");
-        System.out.println("2. Register");
-        System.out.println("3. Exit");
+        System.out.println("2. Exit");
         System.out.println("Input Option:");
     }
 
