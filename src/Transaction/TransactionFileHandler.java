@@ -2,6 +2,7 @@ package Transaction;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,10 @@ public class TransactionFileHandler {
                     String transactionType = parts[0];
                     double amount = Double.parseDouble(parts[1]);
                     String description = parts[2];
-                    transactions.add(new Transaction(transactionType, amount, description));
+                    String time = parts[3];
+                    Transaction transaction = new Transaction(transactionType, amount, description);
+                    transaction.setTime(time);
+                    transactions.add(transaction);
                 }
             }
         } catch (IOException e) {
@@ -38,7 +42,7 @@ public class TransactionFileHandler {
                 String transactionRecord = transaction.getTransactionType() + ","
                         + transaction.getAmount() + ","
                         + transaction.getDescription() + ","
-                        + transaction.getDate().getTime(); // Save timestamp
+                        + LocalTime.now();
                 writer.write(transactionRecord);
                 writer.newLine();
             }
