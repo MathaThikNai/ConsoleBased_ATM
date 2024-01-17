@@ -1,0 +1,8 @@
+User Account Number: 123456
+Loan Amount: 2000.0
+Loan Time (Months): 3.0
+------------------------------
+User Account Number: 234567
+Loan Amount: 5000.0
+Loan Time (Months): 12.0
+------------------------------
