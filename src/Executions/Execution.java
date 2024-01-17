@@ -16,6 +16,7 @@ public class Execution {
         System.out.println("Welcome to the ATM!");
         System.out.println("Please select an option:");
         System.out.println("1. Login");
+//        System.out.println("2. Register");
         System.out.println("2. Exit");
         System.out.println("Input Option:");
     }
@@ -100,7 +101,6 @@ public class Execution {
                 Account cAccount = userAccountManager.readAccountFromFile("accounts.txt", accountNumber);
                 if (cAccount != null) {
                     System.out.println("Account Number: " + cAccount.getAccountNumber());
-                    System.out.println("Initial Balance: " + loggedInUser.getAccountBalance());
                     System.out.println("Name: " + cAccount.getName());
                     System.out.println("Date of Birth: " + cAccount.getDOB());
                 } else {
@@ -111,6 +111,9 @@ public class Execution {
                 System.out.println("Current balance : " + AccountInformationService.getAccountBalance(loggedInUser));
                 System.out.println("-----------------------------------");
                 System.out.println("Fixed Deposit balance : " + loggedInUser.fixedDepositBalance);
+                System.out.println("-----------------------------------");
+                System.out.println("Fixed Deposit with Interest : " + loggedInUser.fdWithInterest);
+                System.out.println("-----------------------------------");
             } else if (input == 3) {
                 Map<Integer, StringBuilder> accountTransactions = readTransactionsFromFile("transactions.txt");
 
@@ -165,6 +168,8 @@ public class Execution {
 
                 Account.fixedDeposit(depositAmount, depositTerm, currentBalance);
                 loggedInUser.fixedDepositBalance += depositAmount;
+                double fdWithInterest = Account.calculateMaturityAmount(depositAmount,depositTerm,2);
+                loggedInUser.fdWithInterest += fdWithInterest;
             }
             else if (input == 6) {
                 loggedInUser.applyForLoan();
